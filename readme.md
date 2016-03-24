@@ -18,15 +18,14 @@ This is a repository containing the full data and code of our paper about masked
 
 
 - the code
-  - [Data Import](code001_dataImport.ipynb)
-  - [Global Metrics for each Face](code002_globalMetrics.ipynb)
-  - [Computation of Mask Weights](code003_weighting.ipynb)
-  - [Analysis by Action Units and Upper/Lower Face Half](code004_actionUnits_and_upperLower.ipynb)
-  - [PCA](code005_principalComponentAnalysis.ipynb)
-  - [RSA](code006_representationalSimilarityAnalysis.ipynb)
-  - [Interactive Reconstruction of each trial form every participant](code007_interactivePlots.ipynb)
-  - [More Complex Action Unit Analysis (Bonus)](code008_actionUnits_interactive.ipynb)
-  - [Main Results as Python Slides](mappingTheFaceSlides.ipynb)
+  - [Data Import](notebooks/code001_dataImport.ipynb)
+  - [Global Metrics for each Face](notebooks/code002_globalMetrics.ipynb)
+  - [Computation of Mask Weights](notebooks/code003_weighting.ipynb)
+  - [Analysis by Action Units and Upper/Lower Face Half](notebooks/code004_actionUnits_and_upperLower.ipynb)
+  - [PCA](notebooks/code005_principalComponentAnalysis.ipynb)
+  - [RSA](notebooks/code006_representationalSimilarityAnalysis.ipynb)
+  - [Interactive Reconstruction of each trial form every participant](notebooks/code007_interactivePlots.ipynb)
+  - [More Complex Action Unit Analysis (Bonus)](notebooks/code008_actionUnits_interactive.ipynb)
 - [the whole experiment, to be run in the browser](experiment/)
 - [the participant logfiles, published under a public domain license](rawTables/)
 - [hand-drawn Action Units](auLabels/)
