@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+    // don't allow to go back and re-take a trial
+    window.history.forward();
+
+});
+
+</script>
+
+
+<br><br>
+
+    <div class="container">
+        <p class="lead">
+      <h1>Ergebnisse</h1>
+        </p>
+      </div>
+
+    <div class="container">
+        <p>
+    Vielen herzlichen Dank für Deine Teilnahme an unserer Studie!<br>
+    <!--
+    Nachfolgend siehst Du einige Ergebnisse. Für jedes Gesicht siehst Du die Wahrscheinlichkeit, mit der eine Gesichtspartie sichtbar war, gegeben dass Deine Antwort richtig war.
+    Je häufiger eine Gesichtspartie zu sehen war, desto stärker rot ist diese Region. <br>
+    Die Teile des Gesichts die häufig sichtbar waren sind diejenigen, deren Sichtbarkeit man sehr häufig abwartet bis man sich für eine Antwort entscheiden kann.
+    Man kann also davon ausgehen, dass sie am meisten Informationen über einen bestimmten Gesichtsausdruck tragen.<br></p>
+  -->
+   <br><br>
+  </div>
+<!--
+    <div class="container">
+
+      <div class="col-md-6">
+        <img src="{{ singlePlot }}" alt="Deine Ergebnisse" height="auto" width="600px" max-height="100%" max-width="100%">
+      </div>
+
+    <div class="col-md-6">
+      <img src="{{ groupPlot }}" alt="Alle Ergebnisse" height="auto" width="600px" max-height="100%" max-width="100%">
+    </div>
+
+  </div>
+-->
+<br><br>
+
+<div class="container">
+
+ <div class="col-md-6">
+    <p>
+      <ul class="list-group">
+        <!--
+       <a href="{{ singlePlot }}" download="{{ singlePlot }}" >
+         <li class="list-group-item">
+            <span class="badge">
+                <img src="{{ url_for('static',filename='img/floppy.png') }}"
+                     style="heigth:20px; width:20px"/>
+            </span>
+             Lade Deine Abbildung als .png herunter
+          </li>
+       </a>
+     -->
+        <a href="{{ this_log }}" download="{{ this_log }}" >
+         <li class="list-group-item">
+            <span class="badge">
+               <img src="{{ url_for('static',filename='img/floppy.png') }}"
+                     style="heigth:20px; width:20px"/>
+            </span>
+             Lade Deine kompletten Daten als .txt Datei herunter
+          </li>
+        </a>
+
+      </ul>
+    </p>
+  </div>
+</div>
+
+<br><br>
+
+<div class="container">
+
+                                    <form action="/analysis" method="post" >
+                                    <input type="submit"
+                                            class="btn btn-primary btn-lg btn-block"
+                                            name ="end_experiment"
+                                            value= "Code für Gutschrift von Versuchspersonenstunden generieren!"/>
+                                    </input>
+                                </form>
+
+
+</div>
+<br><br><br><br>
+{% endblock %}

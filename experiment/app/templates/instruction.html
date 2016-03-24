@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<html>
+
+<div class="container">
+        <p class="lead">
+      <h1><br></h1>
+        </p>
+      </div>
+
+    <div class="container">
+        <h3>Liebe Probandin, lieber Proband,</h3>
+        <p>
+        vielen Dank für Deine Teilnahme an unserem Experiment. Die Studie „Unterscheidung von Emotionsausdrücken“ untersucht Wahrnehmungsprozesse, die bei der Verarbeitung von Gesichtern stattfinden. Um dieser Frage nachzugehen, werden Dir eine Reihe von Gesichtern präsentiert, die Du hinsichtlich ihres Emotionsausdrucks bewerten sollst.
+        Die Gesichter sind durch eine Maske verdeckt, die nach und nach verschwindet und das darunter liegende Gesicht sichtbar werden lässt. Deine Aufgabe wird es sein, möglichst schnell zu entscheiden, welchen Emotionsausdruck das gezeigte Gesicht hat. Dabei sind sowohl Geschwindigkeit als auch Richtigkeit der Antwort wichtig. Du solltest in jedem Fall versuchen, so schnell wie möglich zu antworten. So bald Du glaubst, dass Du das Emotionsausdruck erkannt hast, drückst Du auf den Knopf der unter dem Gesicht eingeblendet ist. Danach kannst Du Dich für eine von sieben Antwortmöglichkeiten entscheiden (Freude, Angst, Ärger, Ekel, Trauer, Überraschung und Neutral).
+        Ein Balken am unteren Bildschirmrand zeigt Dir an, wie weit Du in dem aktuellen Durchgang schon gekommen bist. Insgesamt hat das Experiment zwei Durchgänge und dauert ca. 50 Minuten.
+        Nach jedem Durchgang des Experiments wirst Du Rückmeldung darüber bekommen, wie gut Du bisher abgeschnitten hast. Dabei wird die Geschwindigkeit gegen die Anzahl richtiger Antworten abgetragen. Wenn das Experiment beendet ist, erhältst eine detaillierte Rückmeldung Deiner Leistung im Vergleich mit allen anderen Personen, die bisher mitgemacht haben. Die entsprechenden Ergebnisgrafiken werden Dir auch als Download zur Verfügung stehen.
+        </p>
+  </div>
+
+    <div class="container">
+
+        <h3>Einverständniserklärung</h3>
+
+        <p>
+          Hiermit erkläre ich mich bereit, an einer Studie der <a target="_blank" href="http://www.uni-bielefeld.de/%28en%29/psychologie/ae/AE02/">AE Affektive Neuropsychologie</a> der Universität Bielefeld teilzunehmen. Ich bin über Inhalt, Zweck und Umfang der Untersuchung informiert worden. <strong>Die Teilnahme ist freiwillig. Ich kann jederzeit und ohne Angabe von Gründen meine Einwilligung widerrufen, ohne dass dies mit Nachteilen für mich verbunden wäre.</strong> Die Versuchsleiter verpflichten sich, die Anonymität der erhobenen Daten zu gewährleisten und keinerlei Daten zu sammeln, die meine Identifikation ermöglichen könnten. Ich selbst werde in keinem der Textfelder meinen Namen eintragen oder sonstige zu meiner Identifikation beitragenden Angaben machen. Bei der anonymisierten Aufbewahrung der Daten wird eine Identifikation meiner Person nicht möglich sein. Dies bedeutet auch, dass meine individuellen Daten im Nachhinein nicht gelöscht werden können.
+          Ich erkläre mich bereit, dass die Ergebnisse in anonymisierter Form gespeichert und unter einer freien Lizenz (<a target="_blank" href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>; <a target="_blank" href="https://wiki.creativecommons.org/CC0_use_for_data">weitere Infos</a>) zugänglich gemacht werden.<br>
+          Bei Fragen kann ich mich jederzeit an die Versuchsleiter wenden. Für weitere Rückfragen kann ich eine Mail an <a href="mailto:martin.wegrzyn@uni-bielefeld.de">martin.wegrzyn@uni-bielefeld.de</a> schicken.<br>
+        </p>
+
+    </div>
+    <br>
+
+<div class="container">
+
+    {% for message in form.major.errors %}
+    <br><div class="flash">{{ message }}</div>
+    {% endfor %}
+
+    {% for message in form.consent.errors %}
+    <div class="flash">{{ message }}</div><br><br>
+    {% endfor %}
+
+
+<form action="{{ url_for('instruction') }}" method=post >
+
+    {{ form.hidden_tag() }}
+
+    {{ form.major.label }}
+    {{ form.major }}
+    <br>
+    {{ form.consent.label }}
+    {{ form.consent }}
+
+    <br><br><br>
+<div >
+    {{ form.submit(class="btn btn-primary btn-lg btn-block") }}
+</div>
+</form>
+
+</div>
+<br><br><br>
+
+
+  </body>
+</html>
+
+{% endblock %}

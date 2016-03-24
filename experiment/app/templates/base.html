@@ -1,0 +1,191 @@
+<html>
+
+  <head>
+    <title>Face Experiment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
+    <meta charset="utf-8">
+    <style>body {padding-top: 50px;}</style>
+  </head>
+
+<script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+<style>
+/* Message flashing */
+.flash {
+  background-color: #FBB0B0;
+  padding: 10px;
+}
+</style>
+
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!--<a class="navbar-brand">Finde das Gesicht!</a>
+        <a class="navbar-brand" href="/index">Willkommen</a> -->
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <!--<li class="active"><a href="/index">Home</a></li>
+          <li><a href="/index">About</a></li> -->
+          <li>
+              <a href="#experimentsModal1" class="experiments-link" data-toggle="modal" title="Ich möchte noch mal die Instruktionen nachlesen">Instruktionen</a></li>
+            <li>
+              <a href="#experimentsModal2" class="experiments-link" data-toggle="modal" title="Ich möchte kurz die häufig gestellten Fragen anschauen">FAQ</a></li>
+            <li>
+              <a href="#experimentsModal3" class="experiments-link" data-toggle="modal" title="Ich möchte einen Menschen kontaktieren">Kontakt</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+
+
+    {% block content %}{% endblock %}
+
+    </body>
+
+</html>
+
+
+
+
+
+
+
+   <!-- Use the modals below to showcase details of your experiments! -->
+
+    <!-- experiments Modal 1 -->
+    <div class="experiments-modal modal fade" id="experimentsModal1" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <!-- Project Details Go Here -->
+                            <h2>Instruktionen:</h2>
+                            <br>
+                            <p>
+
+Du sollst maskierte Gesichter hinsichtlich ihres Emotionsausdrucks bewerten.
+Die Maske verschwindet nach und nach, wodurch das das darunter liegende Gesicht sichtbar wird.<br><br>
+Du sollst <strong>möglichst schnell</strong> entscheiden, welchen Emotionsausdruck das gezeigte Gesicht hat.
+So bald Du glaubst, dass Du das Emotionsausdruck erkannt hast, drückst Du auf den STOP-Knopf
+Danach kannst Du Dich für eine von sieben Antwortmöglichkeiten entscheiden:<br>
+Freude, Angst, Ärger, Ekel, Trauer, Überraschung und Neutral.
+
+<h4>Kontakt:</h4>
+Bei Fragen kannst Du Dich gerne an <a href="mailto:martin.wegrzyn@uni-bielefeld.de">martin.wegrzyn@uni-bielefeld.de</a> wenden.<br><br><strong>Wir wünschen weiterhin viel Erfolg beim Experiment!</strong><br><br> </h4>
+                            </p>
+
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <button type="button"
+                                            class="btn btn-success"
+                                            data-dismiss="modal">
+                                        <i class="fa fa-times"></i>DIESES FENSTER SCHLIESSEN
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- experiments Modal 1 -->
+    <div class="experiments-modal modal fade" id="experimentsModal2" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <!-- Project Details Go Here -->
+                            <h2>Mögliche Probleme:</h2><br><br>
+<strong>Problem:</strong> Die Darstellung und/oder das Verhalten des Experiments ist komisch!<br><strong>Lösung:</strong> Verwende eine aktuelle Version von Mozilla Firefox als Browser. Erlaube Cookies und JavaScript.<br><br>
+<strong>Problem:</strong> Ich mache viel Fehler!<br><strong>Lösung:</strong> Das Experiment ist relativ schwer. Mach Dir keine Sorgen, wenn es mal nicht so gut klappt, das ist völlig normal.<br><br>
+<strong>Problem:</strong> Das Experiment reagiert mit Verzörgerung<br><strong>Lösung:</strong>  Das ist normal; es gibt eine Wartezeit von 1/2 Sekunde zwischen den Druchgängen<br><br>
+<strong>Problem:</strong> Ich habe falsch geklickt und möchte den Durchgang wiederholen<br><strong>Lösung:</strong> Es zählt immer die erste Reaktion. Wenn Du einmal einen Fehler gemacht hast, arbeite einfach weiter<br><br>
+
+<br><br>
+<h4>Kontakt:</h4>
+Bei Fragen kannst Du Dich gerne an <a href="mailto:martin.wegrzyn@uni-bielefeld.de">martin.wegrzyn@uni-bielefeld.de</a> wenden.<br><br><strong>Wir wünschen weiterhin viel Erfolg beim Experiment!</strong><br><br> </h4>
+                            </p>
+
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <button type="button"
+                                            class="btn btn-success"
+                                            data-dismiss="modal">
+                                        <i class="fa fa-times"></i>DIESES FENSTER SCHLIESSEN
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- experiments Modal 1 -->
+    <div class="experiments-modal modal fade" id="experimentsModal3" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <!-- Project Details Go Here -->
+                            <h2>Kontakt:</h2>
+                            <br>
+
+Bei Fragen kannst Du Dich gerne an <a href="mailto:martin.wegrzyn@uni-bielefeld.de">martin.wegrzyn@uni-bielefeld.de</a> wenden.<br><br><strong>Wir wünschen weiterhin viel Erfolg beim Experiment!</strong><br><br> </h4>
+                            </p>
+
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <button type="button"
+                                            class="btn btn-success"
+                                            data-dismiss="modal">
+                                        <i class="fa fa-times"></i>DIESES FENSTER SCHLIESSEN
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

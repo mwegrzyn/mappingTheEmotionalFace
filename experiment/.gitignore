@@ -1,0 +1,17 @@
+# dont track the virtual env (because it is huge)
+flask/
+
+# dont track the sensible information for using the mail account
+app/maildata.py
+
+# dont track pyc files
+app/*.pyc
+
+# dont track manuscript
+ms/
+
+# dont track the simuli (for now)
+app/static/img/
+
+#dont track trash
+x/

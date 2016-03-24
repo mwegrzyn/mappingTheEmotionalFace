@@ -1,0 +1,584 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- some CSS to set the size of the stimuli -->
+
+<style>
+
+#containerDiv {
+  margin-left: auto ;
+  margin-right: auto ;
+  position: relative; height: 400px; width: 300px;
+  background-color: white;
+}
+
+#imgDiv {
+   position: absolute;
+   top: 0px;
+   left: 0px;
+   height: 100%;
+   width: 100%;
+}
+
+#corrDiv {
+   position: absolute;
+   top: 25%;
+   left: 25%;
+   width: 50%;
+}
+
+#falseDiv {
+   position: absolute;
+   top: 25%;
+   left: 25%;
+   width: 50%;
+}
+
+#stopButton {
+  margin-left: auto ;
+  margin-right: auto ;
+  position: relative;
+}
+
+</style>
+
+
+<script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='js/spin.js') }}"></script>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript">
+  var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+
+
+
+<script type="text/javascript">
+
+// post by js taken from:  http://stackoverflow.com/a/133997 by Rakesh Pai
+function post(path, params, method) {
+    method = method || "post"; // Set method to post by default if not specified.
+
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+         }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+}
+
+
+
+  // prevent right-clicking
+  document.addEventListener("contextmenu", function(e){
+      e.preventDefault();
+  }, false);
+
+  // prevent going back?
+  window.history.forward();
+  if(window.history.forward(1) != null)
+        window.history.forward(1);
+  window.onunload=function(){null};
+
+
+  $(document).ready(function(){
+
+  // set basic parameters for the masks
+
+  var squareSize = {{ squareSize }};
+  var waitTime = {{ waitTime }};
+  var numRow = {{ numRow }};
+  var numCol = {{ numCol }};
+  var totalNum = numRow*numCol;
+
+
+    // create a bunch of divs with id's
+
+    objTo = document.getElementById('containerDiv')
+
+    for (var i = 0, n = totalNum; i < n; i++) {
+      var divTag = document.createElement("div");
+      divTag.id = "div"+i;
+      divTag.style.width=squareSize+"px";
+      divTag.style.height=squareSize+"px";
+      divTag.style.background="white";
+      objTo.appendChild(divTag);
+      }
+
+
+     // create an array with coordinates, so that each div
+     // can be placed at an individual position
+      var myStuff = [];
+
+      for (var x=0,n=numRow ;x<n;x++) {
+       for (var y=0,m=numCol;y<m;y++) {
+         myStuff.push( {left: x*squareSize, top: y*squareSize} )
+       }
+      }
+
+      // put each div at its respective position
+      for (var i=0, n=totalNum; i<n; i++) {
+        $('#div'+i).css('position','absolute');
+        $('#div'+i).css(myStuff[i]);
+      }
+
+  // // // // FUNCTIONS USED IN LOOP // // // //
+
+  // hide the big button and show the options
+  function showOptions(){
+    $('#stop').hide();
+      $('#hap').show();
+      $('#sad').show();
+      $('#ang').show();
+      $('#fea').show();
+      $('#dis').show();
+      $('#sup').show();
+      $('#ntr').show();
+
+  }
+
+
+  // take the counting data and get them to that server
+  function doTheAjax(){
+
+    maskCounter = i-1;
+    maskList = bigOne;
+    stopRTX = stopRT;
+
+    $.ajax({
+       type: "GET",
+       url: $SCRIPT_ROOT + "/stopEcho/",
+       contentType: "application/json; charset=utf-8",
+       data: { countValue: maskCounter, bigValue: maskList, stopValue: stopRTX  },
+     });
+
+   }
+
+   // mask array
+  var myArray = {{ mask }};
+
+  // dummy for time
+  var stopRT = 0;
+  var choiceRT = 0;
+
+  // global variable that is changed by button press
+  var stop = 0;
+
+  // initialsing list for appending stuff to
+  var bigOne = '';
+
+  // hide one div after another with a fixed interval
+  // http://miljenkobarbir.com/for-loop-with-a-delay-in-javascript/
+  var i = 0;
+
+  var startTime = new Date().getTime();
+
+  function delayedLoop()
+    {
+
+    // if the end of the array has been reached, stop
+    // and show choices
+
+      if(++i == totalNum+1 )
+
+      // full face for test runs only
+      // if(++i == totalNum+1 )
+        {
+        showOptions();
+        doTheAjax()
+
+        return;
+        }
+      // if the participant triggers as stop: stop and show choices
+      if(stop==1)
+      {
+        showOptions();
+        doTheAjax()
+
+        return;
+        }
+
+    // select a random div and hide it
+    // //////////////////////////// CHANGE THAT TO JINJA GETTING THE ARRAY
+    // FROM A FILE !!!
+    var thisSquare = myArray.pop();
+
+    // hide one mask at a time
+    $("#div"+thisSquare).hide();
+
+    // for debugging:
+    //$('#codeTracker').append(thisSquare);
+    //$('#codeTracker').append('-');
+
+    // bigOne gets updated by appending the current mask number
+    bigOne += '-';
+    bigOne += thisSquare.toString();
+
+
+    // recursively call the delayed loop function with a delay
+    window.setTimeout(delayedLoop, waitTime);
+
+  }
+
+  delayedLoop(); // start the loop
+
+  // start status of buttons
+  $('#hap').hide();
+  $('#sad').hide();
+  $('#ang').hide();
+  $('#fea').hide();
+  $('#dis').hide();
+  $('#sup').hide();
+  $('#ntr').hide();
+  $('#corrDiv').hide();
+  $('#falseDiv').hide();
+
+  // button press changes the global variable stop
+  document.getElementById('stop').onclick = function() {
+       stop = 1;
+       var stopTime = new Date().getTime();
+       stopRT = stopTime - startTime;
+    };
+
+
+  function getAndPost(thisId) {
+    document.getElementById(thisId).onclick = function(){
+      // compute the time until the choice is made
+      var choiceTime = new Date().getTime();
+      choiceRT = choiceTime - startTime;
+      // send the second reaction time to flask
+      $.ajax({
+        type: "GET",
+        url: $SCRIPT_ROOT + "/choiceEcho/",
+        contentType: "application/json; charset=utf-8",
+        data: { ansValue: thisId, choiceValue: choiceRT  },
+      });
+
+      // give a feedback, this inlcudes to first hide all the buttons,
+      // the picture and all the remaining divs:
+      $('#imgDiv').hide();
+      $('#hap').hide();
+      $('#sad').hide();
+      $('#ang').hide();
+      $('#fea').hide();
+      $('#dis').hide();
+      $('#sup').hide();
+      $('#ntr').hide();
+      // hide all divs
+      for (var i=0, n=myArray.length; i<n; i++) {
+        thisPop=myArray.pop();
+        $("#div"+thisPop).hide();
+      }
+
+      // then we must determine whether the answer was correct
+      // or incorrect
+      function giveFeedback(idName,expressNum){
+        if(thisId == idName){
+          if( {{ express }} == expressNum ){
+            $('#corrDiv').show();
+          }
+          else{
+            $('#falseDiv').show();
+          }
+        }
+      }
+
+      giveFeedback('hap',0);
+      giveFeedback('sad',1);
+      giveFeedback('ang',2);
+      giveFeedback('fea',3);
+      giveFeedback('dis',4);
+      giveFeedback('sup',5);
+      giveFeedback('ntr',6);
+
+      // post after a brief delay - a non-zero delay is necessary so
+      // that the ajax get reaches the server before the site is updated;
+      // also, it determines the time that the feedback is visible and can
+      // be thought of as an inter-stimulus-interval
+
+      setTimeout(function(){post('/experiment')},  {{ isi }});
+    }
+  };
+
+    // we get the second reaction time (upon 7-way decision)
+    // and post the form so that a new page is generated by flask
+    getAndPost('hap');
+    getAndPost('sad');
+    getAndPost('ang');
+    getAndPost('fea');
+    getAndPost('dis');
+    getAndPost('sup');
+    getAndPost('ntr');
+
+
+  });
+
+
+  // starting dummy values for our output
+  var maskCounter = 0;
+  var maskList = '';
+
+</script>
+
+
+<!--basic structure of trial presentation pages -->
+
+
+<!-- everything is wrapped up in one big div which is centered on the screen -->
+<div align="center" style="margin:auto">
+<br>
+
+<!-- if the run is over, the participant is asked if she wants to continue -->
+{% if i >= length %}
+
+    {%if j == blocks %}
+<div class="container">
+<h3>Prima, Du hast alle Durchgänge des Experiments absolviert. Wenn Du magst, kannst Du Dir nun eine detaillierte und nach Versuchsbedingungen aufgeschlüsselte Übersicht Deiner Ergebnisse anzeigen lassen.</h3>
+</div>
+     {% else %}
+<div class="container">
+<h3>Prima, Du hast einen kompletten Durchgang des Experiments absolviert. Wenn Du magst, kannst Du eine kleine Pause einlegen und danach weiter machen.</h3>
+</div>
+    {% endif %}
+
+<div class="container">
+
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <p>Dein bisheriges Ergebnis im Vergleich zu allen anderen Personen siehst Du unten. Du kannst versuchen, ob es Dir gelingt, beim nächsten Durchgang noch besser abzuschneiden. Je mehr Durchgänge Du absolvierst, desto genauer ist der Schätzer Deiner Leistung.</p>
+
+<img src="{{ pltname }}"
+     style="height:400px; width=400px"/>
+<br><br><br>
+
+    {%if j == blocks %}
+
+        <form action="/experiment"
+              method="POST">
+            <input type=submit
+                id="quit"
+                class="btn btn-large btn-success"
+                value="DOWNLOAD MEINER ERGEBNISSE."
+                name="quit"/>
+        </form>
+
+    {% else %}
+    <ul class="list-inline">
+        <li>
+        <form action="/experiment"
+              method="POST">
+            <input type=submit
+                id="resume"
+                class="btn btn-large btn-success"
+                value="ICH MACHE WEITER."
+                name="resume"/>
+        </form>
+        </li>
+        <!-- temporarily removed for lab context
+        <li>
+        <form action="/experiment"
+              method="POST">
+            <input type=submit
+                   id="quit"
+                   class="btn btn-large btn-warning"
+                   value="ES REICHT MIR."
+                   name="quit"/>
+        </form>
+        </li>
+      -->
+    </ul>
+
+    </div>
+
+    <div class="col-md-2"></div>
+
+    {% endif %}
+
+</div>
+
+
+<!-- if the run is ongoing, show the stimuli (which are also responsive) -->
+{% elif i >= 0 %}
+
+<br><br><br><br>
+
+  <!-- main div where everything is put into -->
+  <div id="containerDiv">
+    <!-- stimulus should change on each trial-->
+    <img id="imgDiv" src="{{ url_for('static',filename=img) }}"/>
+    <img id="corrDiv" src="{{ url_for('static',filename='img/corr.png') }}"/>
+    <img id="falseDiv" src="{{ url_for('static',filename='img/incorr.png') }}"/>
+  </div>
+
+  <br>
+
+  <div class="container">
+
+    <div class="span8" style="text-align:center">
+      <!-- button to stop the sequence -->
+      <input id="stop"
+      type="submit"
+      name="stop"
+      value="STOP"
+      class="btn btn-primary btn-lg btn-block"/>
+
+
+      <!-- buttons for choosing between answer options-->
+      <input id="hap"
+      type="submit"
+      name="hap"
+      value="FREUDE"
+      class="btn btn-large btn-success"/>
+
+      <input id="sad"
+      type="submit"
+      name="sad"
+      value="TRAUER"
+      class="btn btn-large btn-success"/>
+
+      <input id="ang"
+      type="submit"
+      name="ang"
+      value="ÄRGER"
+      class="btn btn-large btn-success"/>
+
+      <input id="fea"
+      type="submit"
+      name="fea"
+      value="ANGST"
+      class="btn btn-large btn-success"/>
+
+      <input id="dis"
+      type="submit"
+      name="dis"
+      value="EKEL"
+      class="btn btn-large btn-success"/>
+
+      <input id="sup"
+      type="submit"
+      name="sup"
+      value="ÜBERRASCHUNG"
+      class="btn btn-large btn-success"/>
+
+      <input id="ntr"
+      type="submit"
+      name="ntr"
+      value="NEUTRAL"
+      class="btn btn-large btn-success"/>
+
+
+  </div>
+
+
+<!-- if the run has not started yet, the instructions are shown -->
+{% elif i < 0 %}
+
+  <div class="container">
+
+      <br><br><br><br>
+      <h1>Nun geht es los.<br></h1>
+      <h3>Du siehst gleich nacheinander Gesichter die maskiert sind.
+          Versuche für jedes Gesicht eine möglichst schnelle und korrekte Entscheidung zu treffen.
+          <br><br>Viel Erfolg.</h3>
+  </div>
+
+<div>
+<!-- ugly hack for preloading images -->
+<img src="{{ url_for('static',filename='img/f_hap_cut.png') }}" width="1" height="2"/>
+<img src="{{ url_for('static',filename='img/f_sad_cut.png') }}"  width="1" height="2"/>
+<img src="{{ url_for('static',filename='img/f_ang_cut.png') }}" width="1" height="2"/>
+<img src="{{ url_for('static',filename='img/f_fea_cut.png') }}" width="1" height="2"/>
+<img src="{{ url_for('static',filename='img/f_dis_cut.png') }}" width="1" height="2"/>
+<img src="{{ url_for('static',filename='img/f_sup_cut.png') }}" width="1" height="2"/>
+<img src="{{ url_for('static',filename='img/f_ntr_cut.png') }}" width="1" height="2"/>
+<img src="{{ url_for('static',filename='img/m_hap_cut.png') }}" width="1" height="2"/>
+<img src="{{ url_for('static',filename='img/m_sad_cut.png') }}" width="1" height="2"/>
+<img src="{{ url_for('static',filename='img/m_ang_cut.png') }}" width="1" height="2"/>
+<img src="{{ url_for('static',filename='img/m_fea_cut.png') }}" width="1" height="2"/>
+<img src="{{ url_for('static',filename='img/m_dis_cut.png') }}" width="1" height="2"/>
+<img src="{{ url_for('static',filename='img/m_sup_cut.png') }}" width="1" height="2"/>
+<img src="{{ url_for('static',filename='img/m_ntr_cut.png') }}" width="1" height="2"/>
+<img src="{{ url_for('static',filename='img/corr.png') }}" width="1" height="2"/>
+<img src="{{ url_for('static',filename='img/incorr.png') }}" width="1" height="2"/>
+</div>
+
+{% endif %}
+
+<br><br>
+
+
+<!-- if the experiment has not started yet, you get a start button -->
+{% if i < 0 %}
+
+
+  <!-- PRELOAD SCRIPT
+  <script type="text/javascript" src="{{ url_for('static',filename='js/preload.js') }}"></script>
+-->
+    <div id="startscreen">
+
+        <form action="/experiment" method="POST">
+            <input type=submit
+
+                class="btn btn-large btn-success"
+                value="START"
+                name="start"/>
+        </form>
+
+    </div>
+    <!--
+    <div id="spinr"></div>
+
+
+   SPINNER SCRIPT
+    <script type="text/javascript" src="{{ url_for('static',filename='js/myspin.js') }}"></script>
+  -->
+
+{% endif %}
+
+
+
+<!-- if the run is still ongoing, you can abort if you are fed up -->
+{% if i>=0 and i < length %}
+
+<div class="navbar navbar-fixed-bottom">
+    <div align="center" style="margin:auto">
+        <div class="container">
+            <div class="col-md-12">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-info progress-bar-striped"
+                         role="progressbar"
+                         aria-valuenow="{{ i/length*100.0 }}"
+                         aria-valuemin="0"
+                         aria-valuemax="100"
+                         style="width: {{ i/length*100.0 }}%">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+    </div>
+</div>
+
+{% endif %}
+
+<!-- this is work in progress...
+<script src= "{{ url_for('static',filename='js/fullscreen.js') }}"></script>
+-->
+
+{% endblock %}

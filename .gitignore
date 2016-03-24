@@ -1,0 +1,17 @@
+# dont track the stimuli (because they are copyrighted)
+/experiment/app/static/img/**
+
+# dont track the online feedback (too many files)
+/experiment/app/static/feedback/**
+
+# dont track the jupyter checkpoints
+/notebooks/.ipynb_checkpoints/**
+
+# dont track binaries
+**/*.pyc
+
+# dont track movies and movie pics (because they are too large/numerous)
+movies/**
+moviePics/**
+
+

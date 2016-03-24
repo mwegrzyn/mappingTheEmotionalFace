@@ -1,0 +1,508 @@
+{% extends "startbase.html" %}
+
+{% block content %}
+
+<script type="text/javascript">
+ function goNewWin() {
+   window.open("/instruction",'TheNewpop','toolbar=0,location=0,directories=0,status=0,menubar=0,scrollbars=1,resizable=0');
+   self.close()
+ }
+ </script>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">cogut.org</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#experiments">Experimente</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#philosophy">Unser Ansatz</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#timeline">Ressourcen</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#contact">Kontakt</a>
+                    </li>
+                    <li><span class="octicon octicon-mark-github">a</span></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+
+ <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="intro-text">
+                <div class="intro-lead-in">willkommen auf cogut.org!</div>
+                <div class="intro-heading">KOGNITIVE EXPERIMENTE.<br>ONLINE.</div>
+                <a href="#experiments" class="page-scroll btn btn-xl" style="color:black">Mach bei einem Experiment mit!</a>
+            </div>
+        </div>
+    </header>
+
+
+
+<!-- experiments Grid Section -->
+
+    <section id="experiments" class="bg-light-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Experimente</h2>
+                    <h3 class="section-subheading text-muted">Eine Übersicht der aktuell laufenden Experimente.</h3>
+                </div>
+            </div>
+            <div class="row">
+                <!--
+                <div class="col-md-4 col-sm-6 experiments-item">
+                    <a href="#experimentsModal1" class="experiments-link" data-toggle="modal">
+                        <div class="experiments-hover">
+                            <div class="experiments-hover-content">
+
+                            </div>
+                        </div>
+                        <img src="{{ url_for('static', filename='startpage/img/experiments/face_ident.png') }}" class="img-responsive" alt="">
+                    </a>
+                    <div class="experiments-caption">
+                        <h4>EMOTIONEN IN GESICHTERN BENENNEN</h4>
+                        <p class="text-muted">Du siehts ein Gesicht und sollst sagen, ob der Ausdruck eher ärgerlich oder ängstlich ist.</p>
+                    </div>
+                </div>
+-->
+                <div class="col-md-4 col-sm-6 experiments-item">
+                    <a href="#experimentsModal2" class="experiments-link" data-toggle="modal">
+                        <div class="experiments-hover">
+                            <div class="experiments-hover-content">
+
+                            </div>
+                        </div>
+                        <img src="{{ url_for('static', filename='startpage/img/experiments/face_mask.png') }}" class="img-responsive" alt="">
+                    </a>
+                    <div class="experiments-caption">
+                        <h4>GESICHTER-QUIZ</h4>
+                        <p class="text-muted">Versuche, möglichst schnell den Ausdruck eines
+                          maskierten Gesichts zu erraten.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+<!-- philosophy Section -->
+
+    <section id="philosophy">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Unser Ansatz</h2>
+                    <h3 class="section-subheading text-muted">Wie wir arbeiten. Was wir erreichen möchten.</h3>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-gamepad fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">Experimente die motivieren.</h4>
+                    <p class="text-muted">Wir möchten dass unsere ProbandInnen sich nicht langweilen. Du entscheidest, wie lange Du mitmachen willst und bekommst sofortige Rückmeldung über deine Ergebnisse.</p>
+                </div>
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-signal fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">Große Stichproben.</h4>
+                    <p class="text-muted">Wir möchten möglichst viele Daten erheben und nach Möglichkeit niemals mit dem Erheben aufhören müssen. Kreuzvalidierungen und die Prädiktion zukünftiger Ergebnisse soll so ermöglicht werden.</p>
+                </div>
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-refresh  fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">Aufeinander aufbauen.</h4>
+                    <p class="text-muted">Wir möchten eine Platform anbieten, auf der man allen Code, alle Daten und das komplette Stimulusmaterial frei einsehen, teilen, verändern und für die eigene Forschung nutzen kann.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- philosophy Section -->
+
+        <section id="timeline" class="bg-dark grey">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading">Ressourcen</h2>
+                        <h3 class="section-subheading text-muted">Code und Daten.</h3>
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <span class="fa-stack fa-4x">
+                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                            <a target="_blank" href ="https://github.com/mwegrzyn/cogut" >
+                              <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </a>
+                        </span>
+                        <h4 class="service-heading">Code auf GitHub.</h4>
+                        <p class="text-muted">Hier steht der ganze Code zur Verfügung, mit dem cogut programmiert wurde.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="fa-stack fa-4x">
+                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                            <a target="_blank" href = "https://github.com/mwegrzyn/cogut/tree/master/app/static/logfiles" >
+                              <i class="fa fa-download fa-stack-1x fa-inverse"></i>
+                            </a>
+                        </span>
+                        <h4 class="service-heading">Download von Daten.</h4>
+                        <p class="text-muted">Hier kann man alle Daten herunterladen, die bisher erhoben wurden.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="fa-stack fa-4x">
+                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                            <a target="_blank" href = "/pub" >
+                              <i class="fa fa-file  fa-stack-1x fa-inverse"></i>
+                            </a>
+                        </span>
+                        <h4 class="service-heading">Publikationen.</h4>
+                        <p class="text-muted">Hier gibt es eine Liste von Publikationen, die auf cogut-Daten aufbauen.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+    <!-- timeline Section -->
+    <!--
+    <section id="timeline" class="bg-light-gray">
+        <div class="container" >
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Historie</h2>
+                    <h3 class="section-subheading text-muted">Einige Eckdaten der Entwicklung von cogut</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="timeline">
+
+                        <li>
+                            <div class="timeline-image">
+                                <img class="img-circle img-responsive" src="{{ url_for('static', filename='startpage/img/timeline/1.jpg') }}" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>XXX</h4>
+                                    <h4 class="subheading">x</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="timeline-inverted">
+                            <div class="timeline-image">
+                                <img class="img-circle img-responsive" src="{{ url_for('static', filename='startpage/img/timeline/2.jpg') }}" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>XY 2015</h4>
+                                    <h4 class="subheading">Thousand Participants Reached</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="timeline-image">
+                                <img class="img-circle img-responsive" src="{{ url_for('static', filename='startpage/img/timeline/3.jpg') }}" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>Mai 2015</h4>
+                                    <h4 class="subheading">Die Erste Version von cogut geht online.</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">cogut.org geht mit einem Experiment zur Wahrnehmung von Emotionsausdrücken in Gesichtern online.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="timeline-inverted">
+                            <div class="timeline-image">
+                                <img class="img-circle img-responsive" src="{{ url_for('static', filename='startpage/img/timeline/4.jpg') }}" alt="">
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4>Januar 2015</h4>
+                                    <h4 class="subheading">Die Arbeit an cogut beginnt.</h4>
+                                </div>
+                                <div class="timeline-inverted">
+                                    <p class="text-muted">Im Januar entsteht die erste Version von cogut.org, sowie ein Experiment zu Gesichterwahrnehmung. Die Programmierung erfolgt überwiegend in Python und mit Hilfe von Flask.</p>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+  -->
+
+<!-- CONTACT -->
+
+
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Kontakt</h2><br><br>
+                    <a href="mailto:martin.wegrzyn@uni-bielefeld.de">
+                        <div class="col-lg-12 text-center">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-envelope  fa-stack-1x fa-inverse"></i>
+                            </span></div></a>
+                    </div><br><br>
+             <div class="col-lg-12 text-center">
+                    <h3 class="section-subheading text-muted">Bei Fragen, Anregungen und Kritik schreib uns eine <a href="mailto:martin.wegrzyn@uni-bielefeld.de">Email</a>.</h3>
+                 </div>
+<!--
+                </div>
+            </div>
+
+
+
+
+                    <form name="sentMessage" id="contactForm" novalidate>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Name *" id="name" required data-validation-required-message="Bitte gibt einen Namen an.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="Email *" id="email" required data-validation-required-message="Bitte gib eine Email-Adresse an.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <input type="tel" class="form-control" placeholder="Your Phone *" id="phone" required data-validation-required-message="Please enter your phone number.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <textarea class="form-control" placeholder="Nachricht *" id="message" required data-validation-required-message="Bitte hinterlasse eine Nachricht."></textarea>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-12 text-center">
+                                <div id="success"></div>
+                                <button type="submit" class="btn btn-xl">Absenden</button>
+                            </div>
+                        </div>
+                    </form>-->
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <span class="text-left">
+                    <span class="copyright">
+                        <ul class="list-unstyled" >
+                            <li>cogut nutzt folgende Software: </li>
+                            <li> </li>
+                            <li><a style="color:black"
+                                   href="https://python.org/" target="_blank">Python</a></li>
+                            <li><a style="color:black"
+                                   href="http://flask.pocoo.org/" target="_blank">Flask</a></li>
+                            <li><a style="color:black"
+                                   href="http://www.tornadoweb.org/en/stable/" target="_blank">Tornado</a></li>
+                            <li><a style="color:black"
+                                   href="http://werkzeug.pocoo.org/" target="_blank">Werkzeug</a></li>
+                            <li><a style="color:black"
+                                   href="http://jinja.pocoo.org/" target="_blank">Jinja</a></li>
+                            <li><a style="color:black"
+                                   href="http://www.numpy.org/" target="_blank">NumPy</a></li>
+                            <li><a style="color:black"
+                                   href="http://pandas.pydata.org/" target="_blank">Pandas</a></li>
+                            <li><a style="color:black"
+                                   href="http://matplotlib.org/" target="_blank">matplotlib</a></li>
+                             <li><a style="color:black"
+                                   href="http://stanford.edu/~mwaskom/software/seaborn/index.html" target="_blank">Seaborn</a></li>
+                            <li ><a style="color:black"
+                                    href="http://startbootstrap.com/" target="_blank">Bootstrap</a></li>
+
+
+
+                        </ul>
+                    </span></span>
+                </div>
+                <div class="col-md-6">
+                        <span class="text-left">
+                        <span class="copyright">
+                            <ul class="list-unstyled">
+                                <li>Weitere Infos: </li>
+                                <li> </li>
+                                <li>Code und Daten auf <a style="color:black" href="https://github.com/mwegrzyn/face_discrimination" target="_blank">GitHub</a></li>
+                               <li>cogut ist <a style="color:black" href="https://gnu.org/licenses/gpl.html" target="_blank">freie Software</a></li>
+
+                                <li><a href="/impressum"  style="color:black">Impressum</a></li>
+
+                            </ul>
+                        </span>
+                </div>
+
+                <!--</div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li><a href="#"><i class="fa fa-github"></i></a>
+                        </li> -->
+                        <!--<li><a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                    </ul>-->
+                </div>
+        </div>
+    </footer>
+
+<!-- experiments Modals -->
+
+
+    <!-- experiments Modal 1 -->
+        <!--
+    <div class="experiments-modal modal fade" id="experimentsModal1" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+
+                            <h2>Emotionen in Gesichtern</h2>
+                            <p class="item-intro text-muted">Wahrnehmungsstudie. Umfang: ca. 30 Minuten.</p>
+                            <img class="img-responsive" src="{{ url_for('static', filename='startpage/img/experiments/face_ident.png') }}" alt="">
+                            <p>Du siehts immer ein Gesicht und sollst entscheiden, ob es eher ängstlich oder ärgerlich ausschaut. Manchmal kannst Du das ganze Gesicht anschauen, aber manchmal sind nur bestimmte Partien des Gesichts sichtbar.</p>
+                            <p>
+                                <strong>Willst Du mitmachen?</strong> Dann klicke hier:</p>
+
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <button type="button"
+                                            class="btn btn-success"
+                                            data-dismiss="modal">
+                                        <i class="fa fa-times"></i>START
+                                    </button>
+
+
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button"
+                                            class="btn btn-danger"
+                                            data-dismiss="modal">
+                                        <i class="fa fa-times"></i>SCHLIESSEN
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+-->
+    <!-- experiments Modal 2 -->
+    <div class="experiments-modal modal fade" id="experimentsModal2" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>GESICHTER-QUIZ</h2>
+                            <p class="item-intro text-muted">Wahrnehmungsstudie. Dauer ca. 15-60 Minuten (frei wählbar).</p>
+                            <img class="img-responsive img-centered" src="{{ url_for('static', filename='startpage/img/experiments/face_mask.png') }}" alt="">
+                            <br>
+                            <p>Du siehst einzelne Gesichter, die einen bestimmten Ausdruck zeigen und zunächst völlig verdeckt sind.
+                              Nach und nach werden immer mehr Partien des Gesichts aufgedeckt.
+                              Versuche, möglichst schnell den Gesichtsausdruck zu erkennen!<br><br>
+                            </p>
+
+                            <p><strong>Du willst mitmachen?</strong>  Dann klicke auf Start:</p>
+
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <a href="javascript:goNewWin()">
+                                    <div class="btn btn-success">
+                                        <span class="glyphicon glyphicon-ok"></span>
+                                         START
+                                    </div>
+                                    </a>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <button type="button"
+                                            class="btn btn-danger"
+                                            data-dismiss="modal">
+                                        <i class="fa fa-times"></i>
+                                         SCHLIESSEN
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

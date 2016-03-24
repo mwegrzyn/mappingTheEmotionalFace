@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<br><br>
+<div class="container"><div class="col-md-12">
+    <p class="lead">
+    <h1>Persönlicher Code</h1>
+    </p>
+<br>
+<h4><strong>Danke fürs Mitmachen!</strong></h4>
+<br>
+
+    <p>Du hast {{ runs }} Blöcke des Experiments absolviert und dafür nicht mehr als {{ time }} Minuten gebraucht.
+        Damit wir Dir Deine Versuchspersonenstunden gutschreiben können, trage Dich im <a href="http://www.uni-bielefeld.de/psychologie/Forschungsportal/Versuchspersonen.html" target="_blank">Forschungsportal</a> für die Studie ein und sende bitte <strong>Deine Vp-Nummer und foldenden Code </strong> mit Hilfe des unten stehenden Formularfeldes an uns.</p><br>
+    <p><h4><strong>Dein Code: {{ code }}</strong></h4></p><br>
+
+    <p>
+    Dieser Code wird einmalig generiert und <strong>lässt keinerlei Rückschluss darauf zu, welche Ergebnisdatei von Dir stammt</strong>. Er sagt wie viele Durchgänge Du absolviert hast und wie viel Zeit Du dafür benötigt hast.
+    <br>Außerdem wird die von Dir benötigte Zeit in 10 Minunten-Schritten aufgerundet, so dass man die Zeitangabe aus dem Code nicht mit den Zeiten aus den Ergebnisdateien abgleichen kann.
+    Da Du zum verschicken der Vp-Nummer und des Codes auch nicht Deine eigene Email-Adresse verwenden musst, bleiben Deine <strong>Daten komplett anonym</strong>.<br>
+    Wir empfehlen Dir, den Code zur Sicherheit auch noch mal für Dich selbst irgendwo abzuspeichern.
+    <br><br>
+    Wenn Du magst, kannst Du das Formular auch dazu verwenden, um uns eine kurze Rückmeldung zu geben. Uns interessiert wie Du das Experiment findest, ob es irgendwelche Probleme beim Bearbeiten gab und was wir noch verbessern könnten. Danke.<br><br>
+    </p>
+</div></div>
+
+{% if success == False %}
+<div class="container">
+   <div class="col-md-6">
+
+    {% for message in form.message.errors %}
+    <br><div class="flash">{{ message }}</div>
+    {% endfor %}
+    <br>
+
+<form action="{{ url_for('coursecredit') }}" method=post >
+
+    {{ form.hidden_tag() }}
+
+    {{ form.message.label }}<br>
+    {{ form.message(class_="form-control") }}
+
+    <br><br>
+<div >
+    {{ form.submit(class="btn btn-primary") }}
+</div>
+</form>
+    <br>
+    </div></div>
+{% else %}
+<div class="container"><div class="col-md-12">
+
+    <div class="flash">{{ success }}</div>
+
+    <br><br>
+
+    <form action="/index" method="post" >
+        <input type="submit"
+               class="btn btn-primary btn-lg btn-block"
+               name ="end_experiment"
+               value= "Zum Startbildschirm zurückkehren"/>
+        </input>
+    </form>
+
+</div></div>
+{% endif %}
+
+<br><br><br><br>
+
+{% endblock %}

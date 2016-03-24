@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Demographische Angaben</h2>
+
+    <div>
+        <p>
+        Nachfolgend möchten wir Dich bitten, ein paar allgemeine Informationen zu Deiner Person zu machen. Diese Angaben sind freiwillig, aber wir freuen uns, wenn Du möchlichst viele Fragen beantwortest. Die Fragen sind allgemein gehalten, so dass sie keinen Rückschluss auf Deine Person ermöglichen. So musst Du z.B. nicht Dein exaktes Alter angeben, sondern lediglich eine von 5 Altersgruppen auswählen.
+
+        </p>
+    </div>
+        {% for message in form.location.errors %}
+        <div class="flash">{{ message }}</div>
+        {% endfor %}
+
+        {% for message in form.age.errors %}
+        <div class="flash">{{ message }}</div>
+        {% endfor %}
+
+        {% for message in form.gender.errors %}
+        <div class="flash">{{ message }}</div>
+        {% endfor %}
+
+        {% for message in form.occupation.errors %}
+        <div class="flash">{{ message }}</div>
+        {% endfor %}
+
+        {% for message in form.advertisement.errors %}
+        <div class="flash">{{ message }}</div>
+        {% endfor %}
+<br><br>
+
+<div class="row marketing">
+  <div class="col-md-5">
+
+    <form action="{{ url_for('demographics') }}" method=post>
+        {{ form.hidden_tag() }}
+        <div class="container">
+        {{ form.location.label }}<br>
+        {{ form.location }}
+            <br></div><br>
+        <div class="container">
+        {{ form.age.label }}<br>
+        {{ form.age }}
+        <br></div><br>
+        <div class="container">
+        {{ form.gender.label }}<br>
+        {{ form.gender }}
+        <br></div><br>
+  </div>
+        <div class="col-md-5">
+
+        <div class="container">
+        {{ form.occupation.label }}<br>
+        {{ form.occupation }}
+        <br></div><br>
+        <div class="container">
+        {{ form.advertisement.label }}<br>
+        {{ form.advertisement }}
+        <br></div><br><br>
+        <div class="container">
+        {{ form.submit(class="btn btn-primary") }}
+        </div><br><br><br>
+    </form>
+    </div>
+</div>
+{% endblock %}
