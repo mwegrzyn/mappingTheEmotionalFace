@@ -2,17 +2,18 @@
 ## How individual face parts contribute to successful emotion recognition.
 
 Martin Wegrzyn, Maria Vogt, Berna Kireclioglu, Julia Schneider & Johanna Kissler
-in preparation
+Published: May 11, 2017
+[DOI: 10.1371/journal.pone.0177239](http://dx.doi.org/10.1371/journal.pone.0177239)
 
 ### Abstract
 
-Which facial features allow human observers to successfully recognize expressions of emotion? While the eyes and mouth have been frequently shown to be of high importance, research on facial action units has made more precise predictions about the areas involved in displaying each emotion. If human observers are able to efficiently decode individual facial signals, their ability should be reflected in a fine-grained pattern of weights across the face, indicating the most diagnostic areas for each expression.
-In the present experiment, emotional faces were hidden behind a mask of 48 tiles, which was sequentially uncovered. Participants were instructed to stop the sequence of unmasking as soon as they recognized the facial expression and assign it the correct label. This gave rise to a set of weight patterns across each face, with most variance explained by the eye and mouth regions. Furthermore, the difference in the importance of eyes and mouth allowed to group the expressions in a continuous space, ranging from sadness and fear (reliance on the eyes) to disgust and happiness (mouth). The face parts with highest diagnostic value were typically located in areas corresponding to action units from the facial action coding system.
-A similarity analysis of the weights for every expression demonstrated that faces cluster together by the emotion they express. Also, expressions relying more on the eyes or mouth region are in close proximity in the constructed similarity space. We argue that our analyses can help to better understand the way human observers represent expressions of emotion, and can indicate which expressions will be recognized most readily and which ones will most likely be confused.
+Which facial features allow human observers to successfully recognize expressions of emotion? While the eyes and mouth have been frequently shown to be of high importance, research on facial action units has made more precise predictions about the areas involved in displaying each emotion. The present research investigated on a fine-grained level, which physical features are most relied on when decoding facial expressions.
+In the experiment, individual faces expressing the basic emotions according to Ekman were hidden behind a mask of 48 tiles, which was sequentially uncovered. Participants were instructed to stop the sequence as soon as they recognized the facial expression and assign it the correct label. For each part of the face, its contribution to successful recognition was computed, allowing to visualize the importance of different face areas for each expression. Overall, observers were mostly relying on the eye and mouth regions when successfully recognizing an emotion. Furthermore, the difference in the importance of eyes and mouth allowed to group the expressions in a continuous space, ranging from sadness and fear (reliance on the eyes) to disgust and happiness (mouth). The face parts with highest diagnostic value for expression identification were typically located in areas corresponding to action units from the facial action coding system.
+A similarity analysis of the usefulness of different face parts for expression recognition demonstrated that faces cluster according to the emotion they express, rather than by low-level physical features. Also, expressions relying more on the eyes or mouth region were in close proximity in the constructed similarity space. These analyses help to better understand how human observers process expressions of emotion, by delineating the mapping from facial features to psychological representation.
 
 ### About
 
-This is a repository containing the full data and code of our paper about masked facial expressions (work in progress!).  
+This is a repository containing the full data and code of our paper about masked facial expressions.
 
 ### Table of Contents
 
