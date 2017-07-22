@@ -2,6 +2,7 @@
 ## How individual face parts contribute to successful emotion recognition.
 
 Martin Wegrzyn, Maria Vogt, Berna Kireclioglu, Julia Schneider & Johanna Kissler
+  
 Published: May 11, 2017  
 [DOI: 10.1371/journal.pone.0177239](http://dx.doi.org/10.1371/journal.pone.0177239)
 
